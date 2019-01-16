@@ -165,6 +165,65 @@ Angular for LOB Apps
         - ngModel, is a directive of angular that is used for two-way binding
         - ngModule must import "FormsModule" from @angular/forms to execute ngModel.
 * Forms
+  - @angular/forms
+    - FormsModule
+    - ReactiveFormsModule
+      - Used for Building Data-Drive-Forms aka Reactive Forms(?)
+        - Reactive Forms
+          - Model Validated Forms
+          - FormGroup
+            - Groups all FormControls -->(Elements in Form), used as a single Object Post
+              - The "value" property of FormGroup provides "values" of each FormControl
+            - FormControl --> The "value" property of FormControl represents value entered in Element bind to Model-property
+              - A single editable element inside FormGroup
+                - input type
+                - select
+                - textarea
+          - FormBuilder
+            - Builds the form and evaluate all validations on Model object
+  - <form> --> tag maps with "ngForm" directive by default
+  - (onSubmit) event maps with ngSubmit by default
+  - Validations for NG Forms
+    - Define FromGroup and link it with <form>
+    - FormGroup, has ctor that accepts "AbstractControl"
+      - AbstractControl is an editable element in <form> that is linked with FormGroup. IMP: Each editable element must be mapped with "FormControl" object using "formControlName" attribute of @angular/forms
+      - Import FormControl from @angular/forms
+        - FormControl can map with property of Model class
+    - Link all FormControls to [formControlName] attribute of editable elements
+    - To execute [formGroup] and [formControlName] import "ReactiveFormsModule" in NgModule
+
+- Angular Form Validations
+  - HTML 5 based Element Validations
+    - HTML 5 attributes
+      - required
+      - pattern
+      - minlength
+      - maxlength
+  - Angular Model Validations
+    - Validators class under @angular/forms
+      - Static methods for validations
+        - required(AbstractControl)
+        - pattern("<Regular Expression as string>")
+        - minlength(number)
+        - maxlength(number)
+        - requiredTrue(AbstractControl)
+          - The control must be true
+        - compose(Validators as input parameter as array)
+    - Validation State Change by FormGroup
+      - <formGroup>.controls --> FormControlCollection
+      - <formGroup>.controls.<formcontrolname> --> specific element
+      - <formGroup>.controls.<formcontrolname>.dirty --> state changes.
+      - <formGroup>.controls.<formcontrolname>.valid/.invalid
+    - Validation Rule check
+      - <formGroup>.controls.<formcontrolname>.errors.<validation-error>
+        - e.g.
+          - <formGroup>.controls.<formcontrolname>.errors.required/.pattern/.minlength
+    - To write custom validator
+      - Method must be static
+      - can accept either primptive types / AbstractControl
+      - return "null" if data is valid
+      - else return {invalid:true} for invalid data
+
 * Services
 * Directives
   - UI and Behavioral Objects
