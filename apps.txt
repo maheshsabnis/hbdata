@@ -1,0 +1,8 @@
+// passing data from client to Node as POST
+https://www.dotnetcurry.com/nodejs/1216/using-nodejs-process-post-data
+
+// Using  Externally hosted service call
+https://www.dotnetcurry.com/nodejs/1225/call-external-service-using-nodejs
+
+// Using Promised to call externally hosted Service
+https://www.dotnetcurry.com/nodejs/1242/promises-nodejs-using-q-goodbye-callbacks
