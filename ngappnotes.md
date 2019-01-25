@@ -225,6 +225,37 @@ Angular for LOB Apps
       - else return {invalid:true} for invalid data
 
 * Services
+  - Class decorated with @Injectable() decorator
+  - This must be registered in the providers:[] array of NgModule
+  - This must be injected in Component using "Constructor Injection"
+
+- For Http Calls
+  - @angular/http
+    - HttpModule
+      - Provides platform for Http Communication
+      - Provides to NgModule in its imports:[]
+    - Http
+      - get()/post()/put()/delete() ==> Observable<Response>
+    - Request
+      - Http Current Request
+    - Response
+      - Response with Response Type
+    - Headers
+      - Header Value
+    - RequestOptions
+      - Collection of Header Values
+  - @angular/common/http --> NG 4.0+
+    - HttpClientModule
+      - Http Platform
+    - HttpClient class
+      - get()/post()/put()/delete()
+
+Communication across components
+
+- Case 1: If component's have Parenct/Child relationship across then, then, child component can have a public property (set/get), decorated with @Input decorator
+- Case 2: Components does not knows about each other. Communication will be managed using Angular services, with the help of EventEmitter<T>
+  - Where T is the data to be communicated
+
 * Directives
   - UI and Behavioral Objects
   - 3 Types of Directives
@@ -238,5 +269,16 @@ Angular for LOB Apps
       - Attribues of HTML DOM Elements
         - ngModel
         - ngClass
+  - Steps for Creating Custom Directive --> attribute
+    - The class decorated with @Directive
+      - Also contains 'selector' property
+
+- directive
+  - Target HTML / DOM Element --> ElementRef <-- @angular/core
+  - How to Manage Rendering after Directive is affected?
+    - Required Event --> HostListener class <-- @angular/core
+    - Rendering Management --> Renderer/Renderer2 <--@angular/core
+  - Use @Input decorator for a property to accept data from Containing Component
+
 * Pipes
 * Routes
