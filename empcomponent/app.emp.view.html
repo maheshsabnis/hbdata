@@ -1,0 +1,61 @@
+<div class="container">
+    <table class="table table-striped table-bordered">
+        <tr>
+            <td>EmpNo</td>
+            <td>
+                <input type="text" class="form-control" [(ngModel)]="emp.EmpNo">
+            </td>
+        </tr>
+        <tr>
+            <td>EmpName</td>
+            <td>
+                <input type="text" class="form-control" [(ngModel)]="emp.EmpName">
+            </td>
+        </tr>
+        <tr>
+            <td>Salary</td>
+            <td>
+                <input type="text" class="form-control" [(ngModel)]="emp.Salary">
+                <input type="text"  [value]="emp.Tax" class="form-control" disabled>
+            </td>
+        </tr>
+        <tr>
+            <td>DeptName</td>
+            <td>
+                <select class="form-control" [(ngModel)]="emp.DeptName">
+                    <option *ngFor="let d of depts" value="{{d}}">{{d}}</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>Designation</td>
+            <td>
+                <select class="form-control" [(ngModel)]="emp.Designation">
+                    <option *ngFor="let d of desigs" value="{{d}}">{{d}}</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="button" value="New" (click)="clear()" class="btn btn-default">
+            </td>
+            <td>
+                <button value="Save" (click)="save()" class="btn btn-success">Save</button>
+            </td>
+        </tr>
+    </table>
+</div>
+<div class="container">
+    <table class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <td *ngFor="let c of tableColHeaders" >{{c}}</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let e of emps" (click)="getSelectedEmp(e)">
+                <td *ngFor="let c of tableColHeaders">{{e[c]}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
