@@ -253,6 +253,10 @@ Angular for LOB Apps
 Communication across components
 
 - Case 1: If component's have Parenct/Child relationship across then, then, child component can have a public property (set/get), decorated with @Input decorator
+  - To send data from child to parent , use "EventEmitter<T>" decorated with @Output
+    - (click)
+    - If EventEmitter<T> is decorated with @Output then it will be used for (<EventBinding>) in parent
+    - The Parent-Component must subscribe to the Event and read data of payload using \$event object
 - Case 2: Components does not knows about each other. Communication will be managed using Angular services, with the help of EventEmitter<T>
   - Where T is the data to be communicated
 
@@ -282,3 +286,85 @@ Communication across components
 
 * Pipes
 * Routes
+
+  - Single Page App
+  - Initialize Routing Env.
+    - @angular/router
+      - RouterModule
+        - Manage RouteTable (?) for the "Current NgModule" aka Angular app.
+      - Routes
+        - Represents a Route Table where each entry is "Route(?)"
+          - Route is a JSON object that contains
+            - The 'path' property aka template for URI
+            - The 'component' property, this accepts the NG Component
+            - The 'children' property, used to contain Child-Routes aka Sub-Routes
+            - The 'redirect' property, if not match found for 'component' then redirect to other(default) component
+        - Router class
+          - navigate([<ROUTE URIs>]) method
+        - ActivatedRoute
+          - The Service Object that keeps tract of the Data used across routing
+        - The [routerLink], the attribute directive genetrally used for <a> tag to define and exeute Routing
+        - The <router-outlet></router-outlet>, the component where all route views will be injected (showed)
+    - The "ModuleWithProviders" class from @angular/core to load the route table from RouterModule in imports array of NgModule
+
+* Secure Call from Angular to Express REST APIs
+  - Authentication
+  - Authorization
+* Dockerization
+  - Node + Express
+  - Node + Express + Mongo
+  - Angular Images
+  - MEAN
+
+- Testing the App
+  - @angular/<package>/testing folder
+    - Function / Logic Testing
+      - Code Unit
+      - Event Triggered from UI
+    - Service Testing
+      - Service Method Testing
+      - Mock for External Dependencies
+  - Test Platform
+    - TestBedEnvironment
+    - PlatformBrowserDynamicTestingModule
+      - Manage Additional Dependencies
+    - Mock
+  - Engine
+    - Jasmine
+      - Arrange
+      - Act
+      - Assert
+    - Karma
+      - Load the Browser Process
+      - Manage all external dependencies
+      - Load Angular Object Model
+    - Karma+Jasmine+Browser Launcher
+      - karma.config.js
+        - napm install -g karma
+        - karma init command
+  - @angular/cli
+    - An integration with
+      - Angular OM + Angular TestModel + Test Engine
+      - npm install -g @angular/cli
+        - ng tool
+          - new
+            - Create a new Angular app
+          - generate
+            - generate
+              - component
+              - service
+              - directive
+          - build
+            - Optimize Build based on AoT
+          - start
+            - Execute
+          - test
+            - Used Angular testing Object Model
+              - test.ts file
+                - <FileName>.<fileType>.spec.ts
+                  - fileType
+                    - Component
+                    - Service
+                    - Directive
+          - lint
+            - Language Quality Check before Check-In
